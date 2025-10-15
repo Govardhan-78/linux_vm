@@ -6,7 +6,7 @@ variables:
   terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)'
 stages:
 - stage: Terraform_Deploy
-  diplayNName: "Deploy Linux VM with Terraform"
+  diplayName: "Deploy Linux VM with Terraform"
   jobs:
   - job: Terraform
     displayName: "Run Terrafrm Commands"
@@ -29,7 +29,7 @@ stages:
 
     - script: 
         terraform init -input=false
-      displayNmae: 'Terraform Init'
+      displayName: 'Terraform Init'
       workingDirectory: '$(terraformWorkingDirectory)'
 
     - script:
@@ -40,7 +40,7 @@ stages:
     - script: 
         terraform apply - input=false -auot-apporove tfplan
       displayName: 'Terraform Apply'
-      workingDirecctory: '$(terraformWorkingDirectory)'
+      workingDirectory: '$(terraformWorkingDirectory)'
 
 
 
