@@ -6,7 +6,7 @@ variables:
   terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)'
 stages:
 - stage: Terraform_Deploy
-  diplayName: "Deploy Linux VM with Terraform"
+  displayName: "Deploy Linux VM with Terraform"
   jobs:
   - job: Terraform
     displayName: "Run Terrafrm Commands"
