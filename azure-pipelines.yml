@@ -1,48 +1,46 @@
 trigger:
 - master
+
 pool:
   vmImage: 'ubuntu-latest'
+
 variables:
   terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)'
+
 stages:
 - stage: Terraform_Deploy
   displayName: "Deploy Linux VM with Terraform"
   jobs:
   - job: Terraform
-    displayName: "Run Terrafrm Commands"
+    displayName: "Run Terraform Commands"
     steps:
-    - task: Checkout@1
-      displayName: "Checkout code form repo"
+    - checkout: self
+      displayName: "Checkout code from repo"
 
     - task: TerraformInstaller@1
       inputs:
-       terraformVersion: '1.12.2'
+        terraformVersion: '1.12.2'
 
     - task: AzureCLI@2
       displayName: 'Azure Login'
       inputs:
-        azureSubscription: 'linux_vm'
+        azureSubscription: 'createvmservice'   # replace with your actual Service Connection name
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
-        inlineScript:
-          echo "Logged into Azure successfully"
+        inlineScript: |
+          echo "✅ Logged into Azure successfully"
 
-    - script: 
+    - script: |
         terraform init -input=false
       displayName: 'Terraform Init'
       workingDirectory: '$(terraformWorkingDirectory)'
 
-    - script:
+    - script: |
         terraform plan -input=false -out=tfplan
       displayName: 'Terraform Plan'
       workingDirectory: '$(terraformWorkingDirectory)'
 
-    - script: 
-        terraform apply - input=false -auot-apporove tfplan
+    - script: |
+        terraform apply -input=false -auto-approve tfplan
       displayName: 'Terraform Apply'
       workingDirectory: '$(terraformWorkingDirectory)'
-
-
-
-        
-      
