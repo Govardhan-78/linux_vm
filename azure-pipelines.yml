@@ -19,7 +19,7 @@ stages:
 
     - task: TerraformInstaller@1
       inputs:
-        terraformVersion: '1.12.2'
+        terraformVersion: '1.9.4'
 
     - task: AzureCLI@2
       displayName: 'Azure Login'
