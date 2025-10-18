@@ -24,7 +24,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Azure Login'
       inputs:
-        azureSubscription: 'createvmservice'   # replace with your actual Service Connection name
+        azureSubscription: 'linux_vm'   # replace with your actual Service Connection name
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
