@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  pool: 'linux-vm'
 
 variables:
   terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)'
