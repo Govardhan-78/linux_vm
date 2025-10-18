@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  pool: 'linux-vm'
+  name: 'Default'
 
 variables:
   terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)'
